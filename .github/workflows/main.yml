@@ -3,10 +3,16 @@
 # another option is https://github.com/bellbind/remarkjs-pdf
 name: Create-PDF
 
-# Controls when the workflow will run
-# Triggers the workflow on push or pull request events on any branch and when manually
-# triggered from the Actions tab
-on: [push, pull_request, workflow_dispatch]
+# Publish PDFs after changes land on main, or when triggered manually.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# The deploy action pushes generated PDFs to the pdfs-from-html branch.
+permissions:
+  contents: write
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,7 +40,7 @@ jobs:
          rm pagefiles.txt
       
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./presentations
