@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IETF Hackathon - OpenNHP</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      div.left-column  { width: 49%; float: left; }
+      div.right-column { width: 49%; float: right; }
+
+      div.right-column ~ p { clear: both; }
+      div.right-column ~ ul { clear: both; }
+      div.my-footer {
+        border-top: 1px solid #ccc;
+        font-size: 10pt;
+        text-align: center;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        height: 30px;
+        width: 100%;
+      }
+
+      div.my-footer p {
+        margin-top: 10px;
+        height: 30px;
+      }
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# IETF Hackathon
+
+## OpenNHP
+
+IETF 126
+
+18-19 July 2026
+
+Vienna, Austria
+
+
+---
+
+# AI attacks are outpacing defenders
+
+**Problem:** AI models such as [Claude Mythos](https://www.anthropic.com/claude/mythos) can automate cyberattacks at machine speed, leaving defenders less time to detect, respond, and patch.
+
+**The connect-first model is broken for the AI era:**
+
+ - Services are exposed before users are authenticated
+ - Visibility enables scanning, probing, and attack
+ - The Internet becomes a “dark forest,” where visibility creates vulnerability (*The Three-Body Problem*)
+
+**A new model: authenticate before connect**
+
+ - **NHP:** Network-infrastructure Hiding Protocol
+ - *OSI Layer 5* cryptography verifies and authorizes the requester before connection
+ - Protected resources stay hidden until access is approved
+
+**Hackathon goal:** Test whether NHP reduces the pre-authentication attack surface.
+
+<div class="my-footer"><p>IETF Hackathon - OpenNHP</p></div>
+
+---
+
+# What we are testing
+
+**OpenNHP is the open-source reference implementation of the NHP protocol.**
+
+Project links: [OpenNHP website](https://opennhp.org/) · [GitHub](https://github.com/OpenNHP/opennhp) · [IETF 126 Hackathon wiki](https://wiki.ietf.org/en/meeting/126/hackathon#opennhp-network-infrastructure-hiding-protocol-nhp) · [NHP Internet-Draft](https://datatracker.ietf.org/doc/html/draft-opennhp-ztcpp-nhp)
+
+**Default-deny visibility**
+
+ - An unauthenticated scan should not discover the protected service
+ - A malformed or forged knock should not create an access path
+
+**Authentication and freshness**
+
+ - Replayed or stale requests should be rejected
+ - A valid requester should reach only the authorized resource
+
+**Access lifecycle**
+
+ - The temporary path should close after its configured TTL
+ - Revocation should restore the deny-all state predictably
+
+<div class="my-footer"><p>IETF Hackathon - OpenNHP</p></div>
+
+---
+
+# How OpenNHP grants access
+
+<div style="text-align: center;">
+  <img src="assets/OpenNHP_Arch.gif" alt="Animated OpenNHP access workflow" width="720">
+</div>
+
+<div class="my-footer"><p>IETF Hackathon - OpenNHP</p></div>
+
+---
+
+# What got done
+
+**A live OpenNHP demo is now available:** [https://opennhp.org/demo/](https://opennhp.org/demo/)
+
+ - Experience the effect of NHP's authenticate-before-connect model
+ - Compare access before and after authentication
+ - Test the protected service—and try to break it
+
+**A complete workflow video is available on the same page.**
+
+The recording shows the full journey: the protected service is invisible by default, then becomes accessible only after successful authentication.
+
+<div class="my-footer"><p>IETF Hackathon - OpenNHP</p></div>
+
+---
+
+# See OpenNHP in action
+
+<div style="text-align: center;">
+  <video controls preload="metadata" playsinline width="680" title="Web-based NHP-Agent demo recording">
+    <source src="https://opennhp.org/video/Web-based%20NHP-Agent.mp4" type="video/mp4">
+    Your browser cannot play this video. <a href="https://opennhp.org/demo/">Watch it on the OpenNHP demo page.</a>
+  </video>
+  <p style="margin: 6px 0 0;">Video available at: <a href="https://opennhp.org/demo/">https://opennhp.org/demo/</a></p>
+</div>
+
+<div class="my-footer"><p>IETF Hackathon - OpenNHP</p></div>
+
+---
+
+# What we learned
+
+.left-column[
+<img src="https://opennhp.org/images/ietf-126-hackathon-infographic.png" alt="OpenNHP IETF 126 Hackathon infographic" style="width: 100%; max-height: 430px; object-fit: contain;">
+]
+.right-column[
+#### Results
+
+ - **Before authentication:** no service exposure
+ - **After authentication:** temporary access for authorized users only
+ - **Security testing:** no successful protocol break so far
+
+**Conclusion:** OpenNHP worked as expected.
+]
+
+<div class="my-footer"><p>IETF Hackathon - OpenNHP</p></div>
+
+---
+
+# Wrap up
+
+.left-column[
+#### Team members:
+
+ - Benfeng Chen — Champion
+ - OpenNHP community
+
+#### Sponsors:
+
+<a href="https://layerv.ai/" title="Visit LayerV.ai" style="display: inline-flex; align-items: center; gap: 12px; color: #222; text-decoration: none;">
+  <span style="display: inline-block; width: 68px; height: 62px; overflow: hidden;">
+    <img src="https://layerv.ai/layerv-wordmark.svg" alt="LayerV.ai logo" width="190" style="max-width: none; height: 62px;">
+  </span>
+  <span style="font-size: 28px; font-weight: bold;">LayerV.ai</span>
+</a>
+]
+.right-column[
+#### Project links:
+
+ - [Website and demo](https://opennhp.org/)
+ - [Source code](https://github.com/OpenNHP/opennhp)
+ - [Internet-Draft](https://datatracker.ietf.org/doc/draft-opennhp-ztcpp-nhp/)
+
+#### Notes and contacts:
+
+ - `support@opennhp.org`
+]
+
+<div class="my-footer"><p>IETF Hackathon - OpenNHP</p></div>
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
